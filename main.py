@@ -123,7 +123,7 @@ def input(key):
             print(c_name)
     if key == 'right mouse down':
         punch_sound.play()
-        hit_info = raycast(camera.world_position, camera.forward, distance=5) #Добавить в блок настроек
+        hit_info = raycast(camera.world_position, camera.forward, distance=5)
         if hit_info.hit:
             rc_name = str((hit_info.world_point - hit_info.point).x)+', '+str((hit_info.world_point - hit_info.point).y)+', '+str((hit_info.world_point - hit_info.point).z)
             destroy(hit_info.entity)
