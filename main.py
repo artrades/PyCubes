@@ -6,11 +6,11 @@ from ursina.prefabs.first_person_controller import FirstPersonController
 app = Ursina()
 player = FirstPersonController()
 
-glass_texture = load_texture('assets/glass_block2.png')
-grass_texture = load_texture('assets/grass_block2.png')
-stone_texture = load_texture('assets/stone_block2.png')
-brick_texture = load_texture('assets/brick_block2.png')
-dirt_texture  = load_texture('assets/dirt_block2.png')
+glass_texture = load_texture('assets/glass_block.png')
+grass_texture = load_texture('assets/grass_block.png')
+stone_texture = load_texture('assets/stone_block.png')
+brick_texture = load_texture('assets/brick_block.png')
+dirt_texture  = load_texture('assets/dirt_block.png')
 punch_sound   = Audio('assets/punch_sound',loop = False, autoplay = False)
 block_pick = 1
 
