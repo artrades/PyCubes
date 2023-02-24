@@ -19,6 +19,11 @@ count_blocks=0
 sqlite_connection = sqlite3.connect('blocks.db')
 cursor = sqlite_connection.cursor()
 
+# Create an Entity for handling pausing an unpausing.
+# Make sure to set ignore_paused to True so the pause handler itself can still receive input while the game is paused.
+pause_handler = Entity(ignore_paused=True)
+pause_text = Text('PAUSED', origin=(0,0), scale=2, enabled=False) # Make a Text saying "PAUSED" just to make it clear when it's paused.
+
 def update():
     global block_pick
     if held_keys['-']: block_pick = -1 #блок не ставит
@@ -133,6 +138,23 @@ def input(key):
             sqlite_connection.commit()
             print('remove:')
             print(rc_name) 
+    if key == 'o': # кнопка выхода из игры
+        quit()     # не активна во время паузы
+    if key == 'shift': # кнопка изменения скорости бега
+        if player.speed == 5:
+            player.speed = 10
+        else:
+            player.speed = 5
+        print("скорость = " + str(player.speed))
+
+
+def pause_handler_input(key):
+    if key == 'escape':
+        application.paused = not application.paused # Пауза/продолжение.
+        pause_text.enabled = application.paused     # Надпись "PAUSED" .
+
+pause_handler.input = pause_handler_input   # Assign the input function to the pause handler.
+
             
 read_sqlite_table(None)
 soundtrack.play

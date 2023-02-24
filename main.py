@@ -1,11 +1,11 @@
 from ursina import *
-import os
+import sys,  subprocess
 
 app = Ursina(title='Minecraft-Menu')
 
 def main_start():
     print("Выбран пункт Start")
-    os.system("start cmd /k python game.py")
+    subprocess.Popen([sys.executable, 'game.py', 'arg1'])
     pass
 
 # создаем объект на базе Entity, настраиваем камеру и бэкграунд
@@ -15,7 +15,7 @@ class MenuMenu(Entity):
 
        self.main_menu = Entity(parent=self, enabled=True)
        self.background = Sky(model = "cube", double_sided = True, 
-                             texture = Texture("assets/skybox.jpg"), 
+                             texture = Texture("skybox.png"),
                              rotation = (0, 90, 0))
        
 # вписать lambda-функцию для запуска игры
